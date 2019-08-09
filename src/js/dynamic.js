@@ -1,3 +1,3 @@
 export default () => {
-  console.log('Im dynamically loaded...');
-};
+  console.log('Im dynamically loaded...')
+}

@@ -1,1 +1,1 @@
-console.log('this is main page!!!');
+console.log('this is main page!!!')
