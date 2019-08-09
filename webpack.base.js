@@ -1,9 +1,9 @@
-const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const devMode = process.env.NODE_ENV !== 'production';
+const path = require('path')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const devMode = process.env.NODE_ENV !== 'production'
 
-const pathResolve = (targetPath) => path.resolve(__dirname, targetPath);
+const pathResolve = (targetPath) => path.resolve(__dirname, targetPath)
 
 module.exports = {
   entry: {
@@ -55,15 +55,16 @@ module.exports = {
       },
       {
         test: /\.less$/,
+        exclude: /node_modules/,
         use: [
           devMode
             ? 'style-loader'
             : {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                  publicPath: '../../',
-                },
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../../',
               },
+            },
           'css-loader',
           'postcss-loader',
           'less-loader',
@@ -75,12 +76,17 @@ module.exports = {
           devMode
             ? 'style-loader'
             : {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                  publicPath: '../../',
-                },
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../../',
               },
+            },
           'css-loader',
+        ],
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
           'postcss-loader',
           {
             loader: 'sass-loader',
@@ -89,6 +95,7 @@ module.exports = {
             },
           },
         ],
+        exclude: /node_modules/,
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/,
@@ -133,4 +140,4 @@ module.exports = {
       chunks: ['manifest', 'main'],
     }),
   ],
-};
+}
